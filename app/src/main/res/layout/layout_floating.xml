@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/dp_200"
+    android:layout_height="@dimen/dp_50"
+    android:background="@drawable/shape_white_r8"
+    android:orientation="vertical"
+    android:padding="@dimen/dp_5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="包名:"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/tv_package_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_5"
+            android:maxWidth="@dimen/dp_200"
+            android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="类名:"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/tv_activity_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_5"
+            android:maxWidth="@dimen/dp_200"
+            android:textSize="@dimen/sp_14"
+            tools:text="测试、测试" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

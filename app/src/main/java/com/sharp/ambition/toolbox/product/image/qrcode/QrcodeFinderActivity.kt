@@ -1,8 +1,15 @@
 package com.sharp.ambition.toolbox.product.image.qrcode
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import coil.load
 import com.sharp.ambition.frame.BaseActivity
 import com.sharp.ambition.toolbox.R
+import com.sharp.ambition.toolbox.databinding.ActivityQrcodeFinderBinding
+import java.io.File
 
 /**
  *    author : fengqiao
@@ -13,7 +20,26 @@ class QrcodeFinderActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_qrcode_finder)
+        val binding = DataBindingUtil.setContentView<ActivityQrcodeFinderBinding>(this, R.layout.activity_qrcode_finder)
+        val resultLauncher = registerForActivityResult(ScanQrcodeActivity.ResultContract()) {
+                it?.let { data ->
+                    binding.etResult.setText(data.text)
+                    binding.ivQrcode.load(File(data.bitmapPath))
+                }
+            }
+        binding.btnConfirm.setOnClickListener {
+            resultLauncher.launch(null)
+        }
+        binding.btnOpen.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(binding.etResult.text.toString()))
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            if (intent.resolveActivity(packageManager) != null) {
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "没有应用支持打开此链接", Toast.LENGTH_LONG).show()
+            }
+        }
+        resultLauncher.launch(null)
     }
 
 }

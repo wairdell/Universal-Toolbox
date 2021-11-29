@@ -8,9 +8,22 @@
 
         <EditText
             android:id="@+id/et_result"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toStartOf="@+id/btn_open"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_5"
+            android:text="打开"
+            app:layout_constraintBottom_toBottomOf="@+id/et_result"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/et_result" />
 
         <ImageView
             android:id="@+id/iv_qrcode"

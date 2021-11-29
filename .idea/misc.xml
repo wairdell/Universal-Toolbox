@@ -3,13 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/changwei.zhang/AndroidStudioProjects/UniversalToolbox/app/src/main/res/drawable/ic_app_develop.xml" value="0.1859375" />
         <entry key="..\:/Users/changwei.zhang/AndroidStudioProjects/UniversalToolbox/app/src/main/res/drawable/ic_qrcode.xml" value="0.17708333333333334" />
+        <entry key="..\:/Users/changwei.zhang/AndroidStudioProjects/UniversalToolbox/app/src/main/res/drawable/ic_scan_qrcode.xml" value="0.1859375" />
         <entry key="..\:/Users/changwei.zhang/AndroidStudioProjects/UniversalToolbox/app/src/main/res/drawable/shape_white_r8.xml" value="0.2833333333333333" />
         <entry key="..\:/Users/changwei.zhang/AndroidStudioProjects/UniversalToolbox/app/src/main/res/layout/activity_generate_qrcode.xml" value="0.18857142857142858" />
         <entry key="..\:/Users/changwei.zhang/AndroidStudioProjects/UniversalToolbox/app/src/main/res/layout/activity_main.xml" value="0.23324275362318841" />
-        <entry key="..\:/Users/changwei.zhang/AndroidStudioProjects/UniversalToolbox/app/src/main/res/layout/activity_qrcode_finder.xml" value="0.16614583333333333" />
+        <entry key="..\:/Users/changwei.zhang/AndroidStudioProjects/UniversalToolbox/app/src/main/res/layout/activity_qrcode_finder.xml" value="0.14285714285714285" />
         <entry key="..\:/Users/changwei.zhang/AndroidStudioProjects/UniversalToolbox/app/src/main/res/layout/activity_scan_qrcode.xml" value="0.20969202898550723" />
         <entry key="..\:/Users/changwei.zhang/AndroidStudioProjects/UniversalToolbox/app/src/main/res/layout/item_main_func.xml" value="0.23233695652173914" />
+        <entry key="..\:/Users/changwei.zhang/AndroidStudioProjects/UniversalToolbox/app/src/main/res/layout/layout_floating.xml" value="0.2046875" />
+        <entry key="..\:/Users/changwei.zhang/AndroidStudioProjects/UniversalToolbox/app/src/main/res/xml/accessibility.xml" value="0.1453125" />
       </map>
     </option>
   </component>

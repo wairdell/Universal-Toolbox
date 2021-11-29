@@ -1,14 +1,19 @@
 package com.sharp.ambition.toolbox.product.image.qrcode
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Handler
+import android.os.Parcelable
+import android.util.Log
 import android.view.SurfaceHolder
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.databinding.DataBindingUtil
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
 import com.sharp.ambition.frame.BaseActivity
+import com.sharp.ambition.generateFile
 import com.sharp.ambition.toolbox.R
 import com.sharp.ambition.toolbox.databinding.ActivityScanQrcodeBinding
 import com.sharp.ambition.zxing.ProxyView
@@ -16,6 +21,9 @@ import com.sharp.ambition.zxing.camera.CameraManager
 import com.sharp.ambition.zxing.decoding.CaptureActivityHandler
 import com.sharp.ambition.zxing.decoding.InactivityTimer
 import com.sharp.ambition.zxing.view.ViewfinderView
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
 /**
@@ -26,9 +34,7 @@ import java.util.*
 class ScanQrcodeActivity : BaseActivity(), ProxyView, SurfaceHolder.Callback {
 
     companion object {
-
-        const val EXTRA_RESULT_TEXT = "EXTRA_RESULT_TEXT"
-
+        const val EXTRA_RESULT = "EXTRA_RESULT"
     }
 
     private lateinit var binding: ActivityScanQrcodeBinding
@@ -56,7 +62,7 @@ class ScanQrcodeActivity : BaseActivity(), ProxyView, SurfaceHolder.Callback {
             surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS)
         }
         decodeFormats = null
-        characterSet = "ISO-8859-1"
+        characterSet = "UTF-8"
     }
 
     override fun onPause() {
@@ -91,9 +97,15 @@ class ScanQrcodeActivity : BaseActivity(), ProxyView, SurfaceHolder.Callback {
     }
 
     override fun handleDecode(result: Result, barcode: Bitmap) {
-        setResult(RESULT_OK, Intent().apply {
-            putExtra(EXTRA_RESULT_TEXT, result.text)
-        })
+        GlobalScope.launch {
+            var file = barcode.generateFile(applicationContext)
+            setResult(RESULT_OK, Intent().apply {
+                putExtra(EXTRA_RESULT, ResultData(result.text, file.absolutePath))
+            })
+            finish()
+
+        }
+        Log.e("ScanQrcodeActivity", "handleDecode" + result.text)
     }
 
     override fun drawViewfinder() {
@@ -113,5 +125,24 @@ class ScanQrcodeActivity : BaseActivity(), ProxyView, SurfaceHolder.Callback {
     override fun surfaceDestroyed(holder: SurfaceHolder) {
         hasSurface = false
     }
+
+
+    class ResultContract : ActivityResultContract<Nothing, ResultData>() {
+
+        override fun createIntent(context: Context, input: Nothing?): Intent {
+            return Intent(context, ScanQrcodeActivity::class.java)
+        }
+
+        override fun parseResult(resultCode: Int, intent: Intent?): ResultData? {
+            if (resultCode == RESULT_OK) {
+                return intent?.getParcelableExtra(EXTRA_RESULT)
+            }
+            return null
+        }
+
+    }
+
+    @Parcelize
+    data class ResultData(val text: String, val bitmapPath: String) : Parcelable
 
 }

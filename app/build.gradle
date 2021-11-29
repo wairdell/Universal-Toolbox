@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -64,6 +65,8 @@ dependencies {
     implementation LibraryDependency.ADAPTER_HELPER
     implementation LibraryDependency.VIEW_MODEL_KTX
     implementation LibraryDependency.ACTIVITY_KTX
+    implementation LibraryDependency.FRAGMENT_KTX
+    implementation LibraryDependency.COIL
 
     testImplementation TestLibraryDependency.JUNIT
     androidTestImplementation TestLibraryDependency.ANDROID_JUNIT

@@ -9,7 +9,9 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.sharp.ambition.frame.startActivity
 import com.sharp.ambition.toolbox.R
 import com.sharp.ambition.toolbox.databinding.ActivityMainBinding
+import com.sharp.ambition.toolbox.product.develop.TopActivityManager
 import com.sharp.ambition.toolbox.product.image.qrcode.GenerateQrcodeActivity
+import com.sharp.ambition.toolbox.product.image.qrcode.QrcodeFinderActivity
 import com.sharp.ambition.toolbox.product.image.qrcode.ScanQrcodeActivity
 
 class MainActivity : AppCompatActivity() {
@@ -29,15 +31,18 @@ class MainActivity : AppCompatActivity() {
         adapter.setOnItemClickListener { _, _, position ->
             if(position == 0) {
                 startActivity<GenerateQrcodeActivity>()
-            } else {
-                startActivity<ScanQrcodeActivity>()
+            } else if (position == 1) {
+                startActivity<QrcodeFinderActivity>()
+            } else if (position == 2) {
+                TopActivityManager.startFloatingService(this)
             }
         }
         binding.rvFunc.adapter = adapter
 
         val funcList = arrayListOf(
             FuncItem("生成二维码", R.drawable.ic_qrcode),
-            FuncItem("扫描二维码", R.drawable.ic_qrcode)
+            FuncItem("扫描二维码", R.drawable.ic_scan_qrcode),
+            FuncItem("顶部Activity", R.drawable.ic_app_develop),
         )
         adapter.setList(funcList)
     }

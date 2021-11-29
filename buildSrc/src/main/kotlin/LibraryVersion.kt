@@ -12,6 +12,7 @@ object LibraryDependency {
     const val ADS = "com.pangle.cn:ads-sdk-pro:4.0.1.9"
 
     const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:1.3.2"
+    const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:1.3.0"
     const val APPCOMPAT = "androidx.appcompat:appcompat:1.2.0"
     const val MATERIAL = "com.google.android.material:material:1.3.0"
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:2.0.4"
@@ -21,4 +22,7 @@ object LibraryDependency {
     const val ADAPTER_HELPER = "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6"
 
     const val VIEW_MODEL_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+
+    /** 图片加载 https://github.com/coil-kt/coil */
+    const val COIL = "io.coil-kt:coil:1.3.2"
 }
