@@ -1,5 +1,6 @@
 package com.sharp.ambition.toolbox.product
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.DrawableRes
@@ -13,6 +14,7 @@ import com.sharp.ambition.toolbox.product.develop.TopActivityManager
 import com.sharp.ambition.toolbox.product.image.qrcode.GenerateQrcodeActivity
 import com.sharp.ambition.toolbox.product.image.qrcode.QrcodeFinderActivity
 import com.sharp.ambition.toolbox.product.image.qrcode.ScanQrcodeActivity
+import com.sharp.ambition.toolbox.product.server.ServerSocketService
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             FuncItem("顶部Activity", R.drawable.ic_app_develop),
         )
         adapter.setList(funcList)
+        startService(Intent(this, ServerSocketService::class.java))
     }
 
     data class FuncItem(val title: String, @DrawableRes val imageRes: Int)
