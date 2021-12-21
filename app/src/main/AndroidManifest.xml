@@ -45,7 +45,8 @@
         <activity android:name=".product.image.qrcode.GenerateQrcodeActivity" />
         <activity android:name=".product.image.qrcode.ScanQrcodeActivity" />
         <activity android:name=".product.image.qrcode.QrcodeFinderActivity" />
-
+        <activity android:name=".product.app.AppListActivity" android:launchMode="singleTop" />
+        <activity android:name=".product.app.AppDetailsActivity" />
         <service android:name=".product.develop.FloatingService" />
         <service android:name=".product.server.ServerSocketService" />
 

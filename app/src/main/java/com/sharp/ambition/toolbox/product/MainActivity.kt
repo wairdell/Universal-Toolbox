@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.sharp.ambition.frame.startActivity
 import com.sharp.ambition.toolbox.R
 import com.sharp.ambition.toolbox.databinding.ActivityMainBinding
+import com.sharp.ambition.toolbox.product.app.AppListActivity
 import com.sharp.ambition.toolbox.product.develop.TopActivityManager
 import com.sharp.ambition.toolbox.product.image.qrcode.GenerateQrcodeActivity
 import com.sharp.ambition.toolbox.product.image.qrcode.QrcodeFinderActivity
@@ -37,6 +38,8 @@ class MainActivity : AppCompatActivity() {
                 startActivity<QrcodeFinderActivity>()
             } else if (position == 2) {
                 TopActivityManager.startFloatingService(this)
+            } else if(position == 3) {
+                startActivity<AppListActivity>()
             }
         }
         binding.rvFunc.adapter = adapter
@@ -45,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             FuncItem("生成二维码", R.drawable.ic_qrcode),
             FuncItem("扫描二维码", R.drawable.ic_scan_qrcode),
             FuncItem("顶部Activity", R.drawable.ic_app_develop),
+            FuncItem("手机应用列表", R.drawable.ic_app_list)
         )
         adapter.setList(funcList)
         startService(Intent(this, ServerSocketService::class.java))
