@@ -69,6 +69,8 @@ dependencies {
     implementation LibraryDependency.COIL
 
     implementation("com.squareup.okio:okio:2.4.0")
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.blankj:utilcodex:1.31.0'
 
     testImplementation TestLibraryDependency.JUNIT
     androidTestImplementation TestLibraryDependency.ANDROID_JUNIT

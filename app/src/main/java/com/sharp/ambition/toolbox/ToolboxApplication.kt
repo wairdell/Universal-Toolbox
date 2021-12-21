@@ -1,6 +1,7 @@
 package com.sharp.ambition.toolbox
 
 import android.app.Application
+import com.blankj.utilcode.util.Utils
 
 /**
  *    author : fengqiao
@@ -11,6 +12,7 @@ class ToolboxApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        Utils.init(this)
     }
 
 }
