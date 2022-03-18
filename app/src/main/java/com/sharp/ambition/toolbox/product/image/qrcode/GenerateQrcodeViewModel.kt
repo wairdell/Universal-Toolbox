@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
  */
 class GenerateQrcodeViewModel : ViewModel() {
 
-    val qrcodeBitmap: MutableLiveData<Bitmap> = MutableLiveData();
+    val qrcodeBitmap: MutableLiveData<Bitmap> = MutableLiveData()
 
     fun generateQrcode(content: String) {
         viewModelScope.launch {

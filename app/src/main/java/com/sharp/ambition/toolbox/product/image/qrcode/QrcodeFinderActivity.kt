@@ -1,9 +1,13 @@
 package com.sharp.ambition.toolbox.product.image.qrcode
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import coil.load
 import com.sharp.ambition.frame.BaseActivity
@@ -18,6 +22,8 @@ import java.io.File
  */
 class QrcodeFinderActivity : BaseActivity() {
 
+    private lateinit var permissionResultLauncher: ActivityResultLauncher<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityQrcodeFinderBinding>(this, R.layout.activity_qrcode_finder)
@@ -28,7 +34,11 @@ class QrcodeFinderActivity : BaseActivity() {
                 }
             }
         binding.btnConfirm.setOnClickListener {
-            resultLauncher.launch(null)
+            if (ContextCompat.checkSelfPermission(this,  android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                permissionResultLauncher.launch(android.Manifest.permission.CAMERA)
+            } else {
+                resultLauncher.launch(null)
+            }
         }
         binding.btnOpen.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(binding.etResult.text.toString()))
@@ -39,7 +49,16 @@ class QrcodeFinderActivity : BaseActivity() {
                 Toast.makeText(this, "没有应用支持打开此链接", Toast.LENGTH_LONG).show()
             }
         }
-        resultLauncher.launch(null)
+        permissionResultLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            if (it) {
+                resultLauncher.launch(null)
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this,  android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            permissionResultLauncher.launch(android.Manifest.permission.CAMERA)
+        } else {
+            resultLauncher.launch(null)
+        }
     }
 
 }

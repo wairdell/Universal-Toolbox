@@ -2,14 +2,22 @@ package com.sharp.ambition.toolbox.product.image.qrcode
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Camera
 import android.os.Bundle
 import android.os.Handler
 import android.os.Parcelable
 import android.util.Log
 import android.view.SurfaceHolder
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import coil.load
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
 import com.sharp.ambition.frame.BaseActivity
@@ -24,6 +32,7 @@ import com.sharp.ambition.zxing.view.ViewfinderView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
+import java.io.File
 import java.util.*
 
 /**
@@ -98,7 +107,7 @@ class ScanQrcodeActivity : BaseActivity(), ProxyView, SurfaceHolder.Callback {
 
     override fun handleDecode(result: Result, barcode: Bitmap) {
         GlobalScope.launch {
-            var file = barcode.generateFile(applicationContext)
+            val file = barcode.generateFile(applicationContext)
             setResult(RESULT_OK, Intent().apply {
                 putExtra(EXTRA_RESULT, ResultData(result.text, file.absolutePath))
             })

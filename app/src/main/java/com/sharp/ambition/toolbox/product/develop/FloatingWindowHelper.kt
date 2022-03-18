@@ -5,7 +5,6 @@ import android.content.Context
 import android.graphics.PixelFormat
 import android.os.Build
 import android.provider.Settings
-import android.util.Log
 import android.view.*
 import android.widget.TextView
 import com.sharp.ambition.toolbox.R
@@ -27,14 +26,14 @@ class FloatingWindowHelper(private val context: Context) {
     private var lastY = 0F
 
     init {
-        rootView.setOnTouchListener { v, event ->
+        rootView.setOnTouchListener { _, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     lastX = event.rawX
                     lastY = event.rawY
                 }
                 MotionEvent.ACTION_MOVE -> {
-                    var configuration = ViewConfiguration.get(context)
+                    val configuration = ViewConfiguration.get(context)
                     if (abs(event.rawX - lastX) >= configuration.scaledTouchSlop || abs(event.rawY - lastY) >= configuration.scaledEdgeSlop) {
                         layoutParams.x = (layoutParams.x + (event.rawX - lastX)).toInt()
                         layoutParams.y = (layoutParams.y + (event.rawY - lastY)).toInt()
@@ -59,7 +58,7 @@ class FloatingWindowHelper(private val context: Context) {
                     WindowManager.LayoutParams.TYPE_PHONE
                 }
                 format = PixelFormat.RGBA_8888
-                gravity = Gravity.LEFT or Gravity.TOP
+                gravity = Gravity.START or Gravity.TOP
                 flags =
                     WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                 width = WindowManager.LayoutParams.WRAP_CONTENT
