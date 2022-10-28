@@ -38,7 +38,7 @@ class AppListActivity: AppCompatActivity() {
             })
         }
         binding.recyclerView.adapter = adapter
-        adapter.data = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS)
+        adapter.data = packageManager.getInstalledPackages(PackageManager.GET_PERMISSIONS or PackageManager.GET_META_DATA)
     }
 
     class Adapter : BaseQuickAdapter<PackageInfo, BaseViewHolder>(R.layout.item_app) {

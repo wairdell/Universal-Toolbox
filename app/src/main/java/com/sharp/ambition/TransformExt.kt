@@ -2,6 +2,8 @@ package com.sharp.ambition
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.view.View
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -27,7 +29,7 @@ suspend fun Bitmap.generateFile(file: File) {
             fos.flush()
             fos.close()
         }.onFailure {
-            if(it is IOException) {
+            if (it is IOException) {
                 throw it
             }
         }
@@ -39,4 +41,11 @@ suspend fun Bitmap.generateFile(context: Context): File {
     val file = File(context.cacheDir.absolutePath, "${UUID.randomUUID()}_bitmap.jpg")
     generateFile(file)
     return file
+}
+
+fun View.generateBitmap(): Bitmap {
+    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bitmap)
+    draw(canvas)
+    return bitmap
 }

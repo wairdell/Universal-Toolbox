@@ -30,6 +30,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.UniversalToolbox">
 
         <activity
@@ -48,6 +49,7 @@
         <activity android:name=".product.app.AppListActivity" android:launchMode="singleTop" />
         <activity android:name=".product.app.AppDetailsActivity" />
         <service android:name=".product.server.ServerSocketService" />
+        <activity android:name=".product.webview.WebViewActivity" />
 
         <service
             android:name=".product.develop.MyAccessibilityService"

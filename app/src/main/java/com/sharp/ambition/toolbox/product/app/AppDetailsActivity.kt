@@ -64,10 +64,10 @@ class AppDetailsActivity : AppCompatActivity() {
         detailsFuncList.add(DetailsFuncItem("targetSdkVersion") {
             return@DetailsFuncItem packageInfo.applicationInfo.targetSdkVersion.toString()
         })
+        adapter.setNewInstance(detailsFuncList)
         /*detailsFuncList.add(DetailsFuncItem("requestedPermissions") {
             return@DetailsFuncItem packageInfo.requestedPermissions?.reduce { acc, s -> "$acc\n$s" } ?: ""
         })*/
-        adapter.data = detailsFuncList
     }
 
     class Adapter : BaseQuickAdapter<DetailsFuncItem, BaseViewHolder>(R.layout.item_app_details) {

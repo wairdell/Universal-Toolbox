@@ -16,6 +16,7 @@ import com.sharp.ambition.toolbox.product.image.qrcode.GenerateQrcodeActivity
 import com.sharp.ambition.toolbox.product.image.qrcode.QrcodeFinderActivity
 import com.sharp.ambition.toolbox.product.image.qrcode.ScanQrcodeActivity
 import com.sharp.ambition.toolbox.product.server.ServerSocketService
+import com.sharp.ambition.toolbox.product.webview.WebViewActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +41,8 @@ class MainActivity : AppCompatActivity() {
                 TopActivityManager.startFloatingService(this)
             } else if(position == 3) {
                 startActivity<AppListActivity>()
+            } else if (position == 4) {
+                startActivity<WebViewActivity>()
             }
         }
         binding.rvFunc.adapter = adapter
@@ -48,7 +51,8 @@ class MainActivity : AppCompatActivity() {
             FuncItem("生成二维码", R.drawable.ic_qrcode),
             FuncItem("扫描二维码", R.drawable.ic_scan_qrcode),
             FuncItem("顶部Activity", R.drawable.ic_app_develop),
-            FuncItem("手机应用列表", R.drawable.ic_app_list)
+            FuncItem("手机应用列表", R.drawable.ic_app_list),
+            FuncItem("WebView", R.drawable.ic_app_list)
         )
         adapter.setList(funcList)
         startService(Intent(this, ServerSocketService::class.java))

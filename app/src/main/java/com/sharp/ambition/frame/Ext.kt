@@ -3,6 +3,7 @@ package com.sharp.ambition.frame
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,7 @@ import com.google.zxing.MultiFormatWriter
 import com.google.zxing.common.BitMatrix
 
 import com.google.zxing.EncodeHintType
+import java.io.File
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -81,4 +83,12 @@ suspend fun String.createQrcode(widthAndHeight: Int): Bitmap {
         }
 
     }
+}
+
+fun File.getPackageName(context: Context): String? {
+    var packageArchiveInfo = context.packageManager.getPackageArchiveInfo(
+        this.absolutePath,
+        PackageManager.GET_ACTIVITIES
+    )
+    return packageArchiveInfo?.applicationInfo?.packageName
 }
