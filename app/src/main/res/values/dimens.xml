@@ -20,4 +20,6 @@
     <dimen name="dp_120">120dp</dimen>
     <dimen name="dp_200">200dp</dimen>
     <dimen name="dp_400">400dp</dimen>
+
+    <dimen name="in_1">1in</dimen>
 </resources>

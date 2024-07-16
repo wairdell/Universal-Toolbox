@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.sharp.ambition.toolbox"
         minSdk 21
-        targetSdk 31
+        targetSdk 29
         versionCode 1
         versionName "1.0"
 
@@ -72,7 +72,12 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.blankj:utilcodex:1.31.0'
 
+    implementation "androidx.datastore:datastore-preferences-core:1.0.0"
+    implementation "com.tencent:mmkv-static:1.2.10"
+
     testImplementation TestLibraryDependency.JUNIT
     androidTestImplementation TestLibraryDependency.ANDROID_JUNIT
     androidTestImplementation TestLibraryDependency.ESPRESSO_CODE
+
+    implementation 'com.github.z244370114:DeviceLibray:1.0.4'
 }

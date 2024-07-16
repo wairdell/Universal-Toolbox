@@ -2,10 +2,7 @@ package com.sharp.ambition
 
 import android.view.View
 import com.sharp.ambition.toolbox.R
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancel
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -28,6 +25,7 @@ internal class CloseableCoroutineScope(context: CoroutineContext) : CoroutineSco
     override val coroutineContext: CoroutineContext = context
 
     override fun onViewAttachedToWindow(v: View) {
+        coroutineContext.ensureActive()
     }
 
     override fun onViewDetachedFromWindow(v: View) {

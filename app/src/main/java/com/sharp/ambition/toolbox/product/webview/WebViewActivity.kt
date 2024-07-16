@@ -3,22 +3,17 @@ package com.sharp.ambition.toolbox.product.webview
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
-import android.net.http.SslError
-import com.sharp.ambition.frame.BaseActivity
 import android.os.Bundle
 import android.util.Log
 import android.webkit.*
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.coroutineScope
-import androidx.lifecycle.withCreated
+import com.sharp.ambition.frame.BaseActivity
 import com.sharp.ambition.generateBitmap
 import com.sharp.ambition.generateFile
 import com.sharp.ambition.toolbox.R
 import com.sharp.ambition.toolbox.databinding.ActivityWebViewBinding
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.io.File
 
 /**
  * author : fengqiao
@@ -41,7 +36,11 @@ class WebViewActivity : BaseActivity() {
                 useWideViewPort = true
                 loadWithOverviewMode = true
                 domStorageEnabled = true
+                mediaPlaybackRequiresUserGesture = false
+                javaScriptCanOpenWindowsAutomatically = true
+                setNeedInitialFocus(false)
             }
+            webChromeClient
             webViewClient = object : WebViewClient() {
 
                 override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
@@ -58,11 +57,14 @@ class WebViewActivity : BaseActivity() {
                             super.shouldOverrideUrlLoading(view, request)
                         }
                     }
-
                 }
 
+                override fun onPageFinished(view: WebView, url: String) {
+                    super.onPageFinished(view, url)
+                    Log.e("TAG", "onPageFinished = $url");
+                }
             }
-            loadUrl("https://m.baidu.com")
+            loadUrl("http://10.10.30.79:8080/#/aliMiniPrograms?k=eyJ1IjozNTExMTY1MSwibCI6MjY1MTcwMywidCI6MTY5MzI5Nzc3OX0%3D")
         }
         binding.btnGenerate.setOnClickListener {
             lifecycle.coroutineScope.launch {
@@ -70,4 +72,13 @@ class WebViewActivity : BaseActivity() {
             }
         }
     }
+
+    override fun onBackPressed() {
+        if (binding.webView.canGoBack()) {
+            binding.webView.goBack()
+            return
+        }
+        super.onBackPressed()
+    }
+
 }
